@@ -8,7 +8,7 @@ const ParkFreeMap = () => {
   const mapRef = useRef(null);
 
   useEffect(() => {
-    // Only run if the window object is available (client-side)
+    // Only run if window is defined (avoids server-side error)
     if (typeof window !== "undefined" && mapRef.current && !mapRef.current._leaflet_id) {
       const map = L.map(mapRef.current).setView([51.505, -0.09], 13);
 
@@ -16,8 +16,10 @@ const ParkFreeMap = () => {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      // Example marker (can be replaced with real data)
-      L.marker([51.505, -0.09]).addTo(map).bindPopup("You are here").openPopup();
+      L.marker([51.505, -0.09])
+        .addTo(map)
+        .bindPopup("You are here")
+        .openPopup();
     }
   }, []);
 
@@ -29,8 +31,9 @@ const ParkFreeMap = () => {
         style={{
           height: "500px",
           width: "100%",
-          borderRadius: "12px",
           border: "1px solid #ccc",
+          borderRadius: "8px",
+          marginTop: "1rem",
         }}
       />
     </div>
