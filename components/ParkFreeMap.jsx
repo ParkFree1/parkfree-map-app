@@ -8,7 +8,6 @@ const ParkFreeMap = () => {
   const mapRef = useRef(null);
 
   useEffect(() => {
-    // Only run if window is defined (avoids server-side error)
     if (typeof window !== "undefined" && mapRef.current && !mapRef.current._leaflet_id) {
       const map = L.map(mapRef.current).setView([51.505, -0.09], 13);
 
